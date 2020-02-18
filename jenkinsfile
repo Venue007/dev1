@@ -31,7 +31,7 @@ pipeline{
 		stage("Maven Deploy"){
 			steps {	
 			  sh '''
-       				scp target/myweb.war root@192.168.40.140:/opt/tomcat8/webapps/
+       				scp target/myweb.jar root@192.168.40.140:/opt/tomcat8/webapps/
 				ssh root@192.168.40.140 /opt/tomcat8/bin/shutdown.sh
 				ssh root@192.168.40.140 /opt/tomcat8/bin/startup.sh
     			'''
