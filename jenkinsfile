@@ -24,7 +24,7 @@ pipeline{
 			  sh '''
        				cd TCS/
    				mvn clean install
-				mv target/*.war target/myweb.war
+				mv target/*.jar target/myweb.jar
     			'''
       		  } 
 		}
