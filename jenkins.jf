@@ -1,0 +1,52 @@
+pipeline{
+    agent any
+    stages{
+        stage("welcome to git"){
+            steps{
+                echo "Welcome git practice"
+            }
+        }
+
+        stage("Adding a git branch in local"){
+            steps{
+             sh '''
+                #git init
+                echo "git init create a .git folder in local"
+
+                echo "there is 3 stages in git. Untracked & staging & commit"
+
+               # git 'https://github.com/Venue007/dev1.git'
+
+                #git branch mybranch
+                echo "git branch command will create a branch. Here i am creating feature branch"
+
+            '''
+            }
+        }
+		
+        stage("Adding files to branch"){
+            steps{
+			 sh '''
+				mkdir mybranch
+				cd mybranch
+				git init
+				touch a b c
+                echo "Adding a b c files into branch"
+				git add a b c 
+				git status
+				echo "if you want to get back files from staging area to untracked, you can simply run git reset command"
+				git reset
+				git status
+				git add a b c 
+				git status
+				git commit -m "add files a b c"
+				git log
+				
+				echo "git log command will help to show the git commit id's"
+				echo "If you want to remove the last commit changes you can use git revert command to delete thise changes"
+			'''
+            }
+        }
+
+    }
+}
