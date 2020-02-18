@@ -21,7 +21,10 @@ pipeline{
 			}}
 		stage("Maven Build1"){
 			steps {	
-			  sh "mvn clean install"
+			  sh '''
+       				cd TCS/
+   				mvn clean install
+    			'''
         } 
 		}
 	}}
