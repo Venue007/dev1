@@ -25,6 +25,7 @@ pipeline{
        				cd TCS/
    				mvn clean install
 				mv target/*.jar target/myweb.jar
+				pwd
     			'''
       		  } 
 		}
