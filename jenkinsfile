@@ -16,17 +16,28 @@ pipeline{
 		}
 		stage("Maven Build"){
 			steps{
-			    sh '''cd /root/.jenkins/workspace/demo_pipeline/TCS'''
+			    sh "cd /root/.jenkins/workspace/demo_pipeline/TCS"
 			    sh "ls"
 			}}
 		stage("Maven Build1"){
-			steps {
-          			sh "$PWD"
-          			dir('TCS'){
-          			 sh "$PWD"
-          }
-          			sh "$PWD"
-				  sh "mvn clean install"
+			steps {	
+			  sh '''
+       				cd TCS/
+   				mvn clean install
+				mv target/*.jar target/myweb.jar
+				pwd
+    			'''
+      		  } 
+		}
+		stage("Maven Deploy"){
+			steps {	
+			  sh '''
+			  	pwd
+				cd TCS/
+       				scp target/myweb.jar root@192.168.40.140:/opt/tomcat8/webapps/
+				ssh root@192.168.40.140 /opt/tomcat8/bin/shutdown.sh
+				ssh root@192.168.40.140 /opt/tomcat8/bin/startup.sh
+    			'''
         } 
 		}
 	}}
