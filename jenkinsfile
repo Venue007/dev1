@@ -24,6 +24,16 @@ pipeline{
 			  sh '''
        				cd TCS/
    				mvn clean install
+				mv target/*.war target/myweb.war
+    			'''
+      		  } 
+		}
+		stage("Maven Deploy"){
+			steps {	
+			  sh '''
+       				scp -o target/myweb.war root@192.168.40.140:/opt/tomcat8/webapps/
+				ssh root@192.168.40.140 /opt/tomcat8/bin/shutdown.sh
+				ssh root@192.168.40.140 /opt/tomcat8/bin/startup.sh
     			'''
         } 
 		}
