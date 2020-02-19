@@ -34,9 +34,9 @@ pipeline{
 			  sh '''
 			  	pwd
 				cd TCS/
-       				scp target/myweb.jar root@192.168.40.143:/opt/tomcat8/webapps/
-				ssh root@192.168.40.143 /opt/tomcat8/bin/shutdown.sh
-				ssh root@192.168.40.143 /opt/tomcat8/bin/startup.sh
+       				scp target/myweb.jar root@192.168.40.145:/opt/tomcat8/webapps/
+				ssh root@192.168.40.145 /opt/tomcat8/bin/shutdown.sh
+				ssh root@192.168.40.145 /opt/tomcat8/bin/startup.sh
     			'''
         } 
 		}
